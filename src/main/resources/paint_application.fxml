@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import rosenfeld.paint.PaintApplication?>
+<?import rosenfeld.paint.PaintCanvas?>
+<GridPane fx:controller="rosenfeld.paint.PaintController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+
+    <Label text="Hello World!"
+           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+    <PaintCanvas fx:id="paintCanvas"
+                 width = "200"
+                 height = "200"
+                 GridPane.columnIndex = "0"
+                 GridPane.rowIndex = "5"
+                 GridPane.columnSpan ="2"/>
+
+</GridPane>
