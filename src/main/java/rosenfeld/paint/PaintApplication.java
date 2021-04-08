@@ -7,7 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,37 +24,43 @@ public class PaintApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-//        Parent root = FXMLLoader.load(getClass().getResource("/paint_application.fxml"));
-//
-//        Scene scene = new Scene(root, 300, 300);
-//
-//        stage.setTitle("Paint");
-//        stage.setScene(scene);
-//        stage.show();
-
+        Parent root = FXMLLoader.load(getClass().getResource("/paint_application.fxml"));
+        Scene scene = new Scene(root, 500, 500);
         stage.setTitle("Paint");
-        Scene scene = new Scene(new HBox(20), 300, 300);
-        HBox box = (HBox) scene.getRoot();
-        box.setPadding(new Insets(5, 5, 5, 5));
-
-        final ColorPicker colorPicker = new ColorPicker();
-        colorPicker.setValue(Color.CORAL);
-
-        final Text text = new Text("Current Color");
-        text.setFont(Font.font ("Verdana", 10));
-        text.setFill(colorPicker.getValue());
-
-        colorPicker.setOnAction(new EventHandler() {
-            public void handle(Event t) {
-                text.setFill(colorPicker.getValue());
-            }
-        });
-
-        box.getChildren().addAll(colorPicker, text);
-
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    private void setupPaintComponents() {
+
+        // Tools
+        ToggleButton draw = new ToggleButton("Draw");
+        ToggleButton erase = new ToggleButton("Erase");
+
+
+        ToggleButton[] toolsArr = {draw, erase};
+        ToggleGroup tools = new ToggleGroup();
+
+        for (ToggleButton tool : toolsArr) {
+            tool.setMinWidth(50);
+            tool.setToggleGroup(tools);
+        }
+
+        Button clear = new Button("Clear");
+        clear.setPadding(new Insets(5));
+        clear.setPrefWidth(50);
+
+        // Color picker
+        ColorPicker colorPicker = new ColorPicker();
+        colorPicker.setValue(Color.BLACK);
+
+        // Canvas
+
+        Canvas canvas = new Canvas(200, 200);
+        GraphicsContext gc;
+        gc = canvas.getGraphicsContext2D();
+        gc.setLineWidth(1);
     }
 
     public static void main(String[] args) {
