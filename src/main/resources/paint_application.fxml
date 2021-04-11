@@ -6,15 +6,26 @@
 <?import rosenfeld.paint.PaintApplication?>
 <?import rosenfeld.paint.PaintCanvas?>
 <?import javafx.scene.canvas.Canvas?>
+<?import java.util.ArrayList?>
 <BorderPane fx:controller="rosenfeld.paint.PaintController"
-          xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500">
+            xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500">
 
     <top>
         <ToolBar>
             <HBox alignment="CENTER" spacing = "2">
                 <ColorPicker fx:id="colorPicker"/>
-                <CheckBox fx:id="draw" text="paint"/>
+                <Slider fx:id="lineThickness"/>
+                <RadioButton fx:id="draw" text="draw" onMouseClicked="#draw"/>
+                <RadioButton fx:id="erase" text="erase" onMouseClicked="#erase"/>
                 <Button fx:id="clear" text="clear" onMouseClicked="#clearCanvas"/>
+
+                <fx:define>
+                    <ArrayList fx:id="toggleTools">
+                        <fx:reference source="draw"/>
+                        <fx:reference source="erase"/>
+                    </ArrayList>
+                </fx:define>
+
             </HBox>
         </ToolBar>
 
