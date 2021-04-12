@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import rosenfeld.paint.PaintApplication?>
-<?import rosenfeld.paint.PaintCanvas?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import java.util.ArrayList?>
 <BorderPane fx:controller="rosenfeld.paint.PaintController"
             xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500">
@@ -14,7 +12,6 @@
         <ToolBar>
             <HBox alignment="CENTER" spacing = "2">
                 <ColorPicker fx:id="colorPicker"/>
-                <Slider fx:id="lineThickness"/>
                 <RadioButton fx:id="draw" text="draw" onMouseClicked="#draw"/>
                 <RadioButton fx:id="erase" text="erase" onMouseClicked="#erase"/>
                 <Button fx:id="clear" text="clear" onMouseClicked="#clearCanvas"/>
@@ -32,8 +29,7 @@
     </top>
 
     <center>
-        <Canvas fx:id = "paintCanvas" width = "500" height="500" onMouseDragged="#draw"/>
+        <Canvas fx:id = "paintCanvas" width = "500" height="500"/>
     </center>
-
 
 </BorderPane>

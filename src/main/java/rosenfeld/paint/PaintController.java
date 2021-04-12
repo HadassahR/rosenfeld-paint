@@ -3,7 +3,10 @@ package rosenfeld.paint;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
 import java.util.List;
@@ -21,50 +24,45 @@ public class PaintController {
     @FXML
     public Button clear;
     @FXML
-    public Slider lineThickness;
-    @FXML
-    List<RadioButton> toggleTools;
-
+    public List<RadioButton> toggleTools;
     final ToggleGroup paintTools = new ToggleGroup();
 
-    public void initialize(){
-        for (RadioButton t : toggleTools){
+    public void initialize() {
+        for (RadioButton t : toggleTools) {
             t.setToggleGroup(paintTools);
         }
+
     }
 
-    public void clearCanvas(MouseEvent actionEvent) {
+    public void clearCanvas() {
         GraphicsContext gc = paintCanvas.getGraphicsContext2D();
         gc.clearRect(0, 0, paintCanvas.getWidth(), paintCanvas.getWidth());
 
     }
 
-    public void draw(MouseEvent actionEvent) {
+    public void draw() {
         GraphicsContext gc = paintCanvas.getGraphicsContext2D();
         if (draw.isSelected()) {
             try {
                 paintCanvas.setOnMouseDragged(e -> {
-                    double size = 20.0;
+                    double size = 20.00;
                     double x = e.getX() - size / 2;
                     double y = e.getY() - size / 2;
                     gc.setFill(colorPicker.getValue());
-                    gc.fillOval(x, y, size, size);
+                    gc.fillRect(x, y, size, size);
                 });
             } catch (Exception exc) {
                 exc.getMessage();
             }
-        } else {
-//            double size = 0.0;
-            // do nothing
         }
     }
 
-    public void erase(MouseEvent mouseEvent) {
+    public void erase() {
         GraphicsContext gc = paintCanvas.getGraphicsContext2D();
         if (erase.isSelected()) {
             try {
                 paintCanvas.setOnMouseDragged(e -> {
-                    double size = 20.0;
+                    double size = 20.00;
                     double x = e.getX() - size / 2;
                     double y = e.getY() - size / 2;
                     gc.setFill(colorPicker.getValue());
@@ -73,9 +71,7 @@ public class PaintController {
             } catch (Exception exc) {
                 exc.getMessage();
             }
-        } else {
-//            double size = 0.0;
-            // do nothing
         }
     }
 }
+
