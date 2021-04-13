@@ -20,7 +20,7 @@ public class PaintController {
     @FXML
     public RadioButton erase;
     @FXML
-    public Canvas paintCanvas;
+    public PaintCanvas paintCanvas = new PaintCanvas();
     @FXML
     public Button clear;
     @FXML
@@ -36,8 +36,7 @@ public class PaintController {
 
     public void clearCanvas() {
         GraphicsContext gc = paintCanvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, paintCanvas.getHeight(), paintCanvas.getWidth());
-
+        gc.clearRect(0, 0, paintCanvas.getWidth(), paintCanvas.getHeight());
     }
 
     public void brush() {
@@ -54,6 +53,14 @@ public class PaintController {
                 gc.clearRect(x, y, size, size);
             }
         });
+    }
+
+    public void draw(){
+
+    }
+
+    public void erase(){
+
     }
 }
 

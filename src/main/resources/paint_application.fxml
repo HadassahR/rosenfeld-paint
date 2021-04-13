@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import java.util.ArrayList?>
+<?import rosenfeld.paint.PaintCanvas?>
 <BorderPane fx:controller="rosenfeld.paint.PaintController"
             xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500">
 
@@ -29,7 +30,7 @@
     </top>
 
     <center>
-        <Canvas fx:id = "paintCanvas" width = "500" height="500"/>
+        <PaintCanvas fx:id = "paintCanvas" width = "500" height="500"/>
     </center>
 
 </BorderPane>

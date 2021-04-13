@@ -4,18 +4,16 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.RadioButton;
+import javafx.scene.paint.Color;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import java.util.Arrays;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class PaintControllerTest {
 
     private PaintController controller;
-
 
     @BeforeClass
     public static void beforeClass() {
@@ -28,7 +26,7 @@ public class PaintControllerTest {
         controller.colorPicker = mock(ColorPicker.class);
         controller.draw = mock(RadioButton.class);
         controller.erase = mock(RadioButton.class);
-        controller.paintCanvas = mock(Canvas.class);
+        controller.paintCanvas = mock(PaintCanvas.class);
         controller.clear = mock(Button.class);
         controller.toggleTools = Arrays.asList(
                 mock(RadioButton.class),
@@ -56,33 +54,56 @@ public class PaintControllerTest {
         // when
         controller.clearCanvas();
 
-        // then
+        //then
+
         verify(controller.paintCanvas.getGraphicsContext2D()).clearRect(0, 0,
-                controller.paintCanvas.getHeight(), controller.paintCanvas.getWidth());
+               controller.paintCanvas.getHeight(), controller.paintCanvas .getWidth());
 
     }
 
     @Test
-    public void draw() {
+    public void brush_DrawSelected() {
         // given
         givenPaintController();
+        controller.draw.setSelected(true);
+        controller.erase.setSelected(false);
 
         //when
         controller.brush();
 
         // then
+        verify(controller.draw).setSelected(true);
+        verify(controller.erase).setSelected(false);
 
     }
 
     @Test
-    public void erase() {
+    public void brush_EraseSelected() {
         // given
         givenPaintController();
+        controller.draw.setSelected(false);
+        controller.erase.setSelected(true);
+
+        //when
+        controller.brush();
+
+        // then
+        verify(controller.draw).setSelected(false);
+        verify(controller.erase).setSelected(true);
+
+    }
+
+    @Test
+    public void brush_ColorChanged(){
+        // given
+        givenPaintController();
+        controller.colorPicker.setValue(Color.DARKBLUE);
 
         // when
         controller.brush();
 
         // then
-    }
+        verify(controller.colorPicker).setValue(Color.DARKBLUE);
 
+    }
 }
