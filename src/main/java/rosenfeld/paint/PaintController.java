@@ -14,17 +14,17 @@ import java.util.List;
 public class PaintController {
 
     @FXML
-    public ColorPicker colorPicker;
+    ColorPicker colorPicker;
     @FXML
-    public RadioButton draw;
+    RadioButton draw;
     @FXML
-    public RadioButton erase;
+    RadioButton erase;
     @FXML
-    public PaintCanvas paintCanvas = new PaintCanvas();
+    PaintCanvas paintCanvas = new PaintCanvas();
     @FXML
-    public Button clear;
+    Button clear;
     @FXML
-    public List<RadioButton> toggleTools;
+    List<RadioButton> toggleTools;
     final ToggleGroup paintTools = new ToggleGroup();
 
     public void initialize() {
@@ -53,14 +53,6 @@ public class PaintController {
                 gc.clearRect(x, y, size, size);
             }
         });
-    }
-
-    public void draw(){
-
-    }
-
-    public void erase(){
-
     }
 }
 

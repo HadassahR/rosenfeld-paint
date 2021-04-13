@@ -1,5 +1,6 @@
 package rosenfeld.paint;
 
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -8,6 +9,8 @@ import javafx.scene.paint.Color;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
