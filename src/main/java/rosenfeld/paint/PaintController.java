@@ -36,7 +36,7 @@ public class PaintController {
 
     public void clearCanvas() {
         GraphicsContext gc = paintCanvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, paintCanvas.getWidth(), paintCanvas.getWidth());
+        gc.clearRect(0, 0, paintCanvas.getHeight(), paintCanvas.getWidth());
 
     }
 

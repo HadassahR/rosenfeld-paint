@@ -1,30 +1,20 @@
 package rosenfeld.paint;
 
-import javafx.event.ActionEvent;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.RadioButton;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class PaintControllerTest {
 
     private PaintController controller;
-    private ColorPicker colorPicker;
-    private RadioButton draw;
-    private RadioButton erase;
-    private Canvas paintCanvas;
-    private Button clear;
-    private List<RadioButton> toggleTools;
 
 
     @BeforeClass
@@ -49,39 +39,50 @@ public class PaintControllerTest {
     public void initialize() {
         //given
         givenPaintController();
-        doReturn("draw", "erase")
-                .when(toggleTools).listIterator();
 
         // when
         controller.initialize();
 
         // then
-        verify(controller.toggleTools).get(0).setText("draw");
-        verify(controller.toggleTools).get(1).setText("erase");
+        verify(controller.toggleTools.get(0)).setToggleGroup(controller.paintTools);
+        verify(controller.toggleTools.get(1)).setToggleGroup(controller.paintTools);
+    }
+
+    @Test
+    public void clearCanvas() {
+        //given
+        givenPaintController();
+
+        // when
+        controller.clearCanvas();
+
+        // then
+        verify(controller.paintCanvas.getGraphicsContext2D()).clearRect(0, 0,
+                controller.paintCanvas.getHeight(), controller.paintCanvas.getWidth());
 
     }
 
-//    @Test
-//    public void clearCanvas() {
-//        givenPaintController();
-//        // when
-//        controller.clearCanvas();
-//
-//        // then
-//    }
-//
-//    @Test
-//    public void draw() {
-//        givenPaintController();
-//
-//    }
-//
-//    @Test
-//    public void erase() {
-//        givenPaintController();
-//
-//        controller.brush();
-//
-//    }
+    @Test
+    public void draw() {
+        // given
+        givenPaintController();
+
+        //when
+        controller.brush();
+
+        // then
+
+    }
+
+    @Test
+    public void erase() {
+        // given
+        givenPaintController();
+
+        // when
+        controller.brush();
+
+        // then
+    }
 
 }
