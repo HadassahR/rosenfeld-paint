@@ -40,38 +40,21 @@ public class PaintController {
 
     }
 
-    public void draw() {
+    public void brush() {
         GraphicsContext gc = paintCanvas.getGraphicsContext2D();
-        if (draw.isSelected()) {
-            try {
-                paintCanvas.setOnMouseDragged(e -> {
-                    double size = 20.00;
-                    double x = e.getX() - size / 2;
-                    double y = e.getY() - size / 2;
-                    gc.setFill(colorPicker.getValue());
-                    gc.fillRect(x, y, size, size);
-                });
-            } catch (Exception exc) {
-                exc.getMessage();
-            }
-        }
-    }
 
-    public void erase() {
-        GraphicsContext gc = paintCanvas.getGraphicsContext2D();
-        if (erase.isSelected()) {
-            try {
-                paintCanvas.setOnMouseDragged(e -> {
-                    double size = 20.00;
-                    double x = e.getX() - size / 2;
-                    double y = e.getY() - size / 2;
-                    gc.setFill(colorPicker.getValue());
-                    gc.clearRect(x, y, size, size);
-                });
-            } catch (Exception exc) {
-                exc.getMessage();
+        paintCanvas.setOnMouseDragged(e -> {
+            double size = 20.00;
+            double x = e.getX() - size / 2;
+            double y = e.getY() - size / 2;
+            gc.setFill(colorPicker.getValue());
+            if (draw.isSelected()) {
+                gc.fillRect(x, y, size, size);
+            } else if (erase.isSelected()) {
+                gc.clearRect(x, y, size, size);
             }
-        }
+        });
     }
 }
+
 

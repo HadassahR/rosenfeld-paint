@@ -12,8 +12,8 @@
         <ToolBar>
             <HBox alignment="CENTER" spacing = "2">
                 <ColorPicker fx:id="colorPicker"/>
-                <RadioButton fx:id="draw" text="draw" onMouseClicked="#draw"/>
-                <RadioButton fx:id="erase" text="erase" onMouseClicked="#erase"/>
+                <RadioButton fx:id="draw" text="draw" onMouseClicked="#brush"/>
+                <RadioButton fx:id="erase" text="erase" onMouseClicked="#brush"/>
                 <Button fx:id="clear" text="clear" onMouseClicked="#clearCanvas"/>
 
                 <fx:define>
